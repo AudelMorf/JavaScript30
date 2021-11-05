@@ -37,17 +37,62 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    /**.fileter works by passing in a function that will loop through the array on invetors 
+    **/
+   // and you put what we are looking for and what gets descarded 
+   // .year calling the object property 
+   // ***inventor*** is the name of 
+    const fifteen = inventors.filter(function(inventor){
+      if(inventor.year >= 1500 && inventor.year < 1600){
+        return true;
+      }
+    })
+    console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    /* Map takes in an array it does something with that array and it gives back a new array with the same length
+    */
+   //(=>) means return
+   const fullNames = inventors.map(inventor => `${inventor.first} + ${inventor.last}`);
+
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    // sort gets 2 items and sort them 
+
+    // first way to solve this
+    // const orderd = inventors.sort(function(a, b){
+    //   if(a.year > b.year) {
+    //     return 1;
+    //   } else {
+    //     return -1;
+    //   }
+    // })
+
+    const orderd = inventors.sort((a, b) => a.year > b.year ? 1: -1);
+    
+    console.table(orderd);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    // reduce gives you runnin totap
+
+    const totalYears = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year);
+    }, 0);
+    console.table(totalYears);
 
     // 5. Sort the inventors by years lived
+   const oldest = inventors.sort(function(a,b){
+     // callin on property past
+     const lastGuy = a.passed - a.year;
+     const nextGuy = b.year - b.year;
+     return lastGuy > nextGuy ?1:1;
+    
+   })
+   console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -55,7 +100,7 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+      
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
